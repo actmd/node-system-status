@@ -17,6 +17,11 @@
     </p>
 </div>
 
+<ul class="historical-status">
 {{#each tweets}}
-    <p>{{text}}</p>
+    <li class="{{statusClass entities.hashtags}}">
+        <div class="status-date">{{friendlyDate created_at}} &middot; {{friendlyTime created_at}}</div>
+        <div class="status-text">{{text}}</div>
+    </li>
 {{/each}}
+</ul>
