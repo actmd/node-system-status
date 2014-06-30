@@ -5,10 +5,25 @@ var express = require('express'),
     ntwitter = require('ntwitter'),
     logfmt = require('logfmt'),
     sugar = require('sugar'),
-    twitter_credentials = require('./twitter_credentials.json'),
-    twitter = ntwitter(twitter_credentials),
     app = express(),
-    handlebars;
+    handlebars,
+    twitter_credentials,
+    twitter;
+
+try {
+    // Try to load the credentials from a file
+    twitter_credentials = require('./twitter_credentials.json');
+} catch(e) {
+    // Otherwise, pull from environment variables
+    twitter_credentials = {
+        "consumer_key": process.env.TWITTER_CONSUMER_KEY,
+        "consumer_secret": process.env.TWITTER_CONSUMER_SECRET,
+        "access_token_key": process.env.TWITTER_TOKEN_KEY,
+        "access_token_secret": process.env.TWITTER_TOKEN_SECRET
+    }
+} finally {
+    twitter = ntwitter(twitter_credentials)
+}
 
 hbs = expressHandlebars.create({
     defaultLayout: 'main',
