@@ -1,10 +1,14 @@
-var express = require('express'),
+var CACHE_FILE = './cache/tweets.json',
+    CACHE_DATE_FILE = './cache/date.json',
+    CACHE_AGE_SECONDS = 60000,
+    express = require('express'),
     _ = require('underscore'),
     expressHandlebars = require('express3-handlebars'),
     Handlebars = require('handlebars'),
     ntwitter = require('ntwitter'),
     logfmt = require('logfmt'),
     sugar = require('sugar'),
+    jsonfile = require('jsonfile'),
     app = express(),
     handlebars,
     twitter_credentials,
@@ -13,22 +17,36 @@ var express = require('express'),
 try {
     // Try to load the credentials from a file
     twitter_credentials = require('./twitter_credentials.json');
-} catch(e) {
+} catch (e) {
     // Otherwise, pull from environment variables
     twitter_credentials = {
-        "consumer_key": process.env.TWITTER_CONSUMER_KEY,
-        "consumer_secret": process.env.TWITTER_CONSUMER_SECRET,
-        "access_token_key": process.env.TWITTER_TOKEN_KEY,
+        "consumer_key":        process.env.TWITTER_CONSUMER_KEY,
+        "consumer_secret":     process.env.TWITTER_CONSUMER_SECRET,
+        "access_token_key":    process.env.TWITTER_TOKEN_KEY,
         "access_token_secret": process.env.TWITTER_TOKEN_SECRET
     }
 } finally {
     twitter = ntwitter(twitter_credentials)
 }
 
+try {
+    // Try to load application configuration from a file
+    config = require('./config.json');
+} catch (e) {
+    // Otherwise, pull from environment variables
+    config = {
+        "application_name": process.env.APPLICATION_NAME,
+        "twitter_handle":   process.env.TWITTER_HANDLE,
+        "number_of_tweets": process.env.NUMBER_OF_TWEETS,
+        "help_email":       process.env.HELP_EMAIL,
+        "copyright":        process.env.COPYRIGHT
+    }
+}
+
 hbs = expressHandlebars.create({
-    defaultLayout: 'main',
-    handlebars: Handlebars,
-    helpers: {
+    defaultLayout: false,
+    handlebars:    Handlebars,
+    helpers:       {
 
         statusClass: function(hashtags) {
 
@@ -64,18 +82,21 @@ app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req, res) {
 
-    twitter.get('/statuses/user_timeline.json', {
-        screen_name: 'actmdstatus',
-        count: 10
-    }, function(error, tweets) {
+    try {
+        var cache_date = jsonfile.readFileSync(CACHE_DATE_FILE);
 
-        var first = tweets.shift();
-
-        res.render('index', {
-            first_tweet: first,
-            tweets: tweets
-        });
-    });
+        // Cache date is still fresh...
+        if ('date' in cache_date && Date.now() - CACHE_AGE_SECONDS < cache_date.date) {
+            // ... so render from the cache
+            console.log("Loading tweets from cache...");
+            renderTweets(res, jsonfile.readFileSync(CACHE_FILE));
+        } else {
+            console.log("Cache too old, fetching tweets anew...");
+            fetchTweets(res);
+        }
+    } catch (e) {
+        fetchTweets(res);
+    }
 
 });
 
@@ -83,3 +104,35 @@ var port = Number(process.env.PORT || 5000);
 app.listen(port, function() {
     console.log("Listening on " + port);
 });
+
+function fetchTweets(res) {
+    twitter.get(
+        '/statuses/user_timeline.json',
+
+        {
+            screen_name: config.twitter_handle,
+            count:       config.number_of_tweets
+        },
+
+        function(error, tweets) {
+
+            // Cache tweets on disk
+            console.log("Saving new tweets to cache...");
+            jsonfile.writeFileSync(CACHE_FILE, tweets);
+            jsonfile.writeFileSync(CACHE_DATE_FILE, { "date" : Date.now() });
+
+            renderTweets(res, tweets);
+
+        }
+    );
+}
+
+function renderTweets(res, tweets) {
+    var first = tweets.shift();
+
+    res.render('index', {
+        config:      config,
+        first_tweet: first,
+        tweets:      tweets
+    });
+}

@@ -24,5 +24,10 @@ build/Release
 # see https://npmjs.org/doc/faq.html#Should-I-check-my-node_modules-folder-into-git
 node_modules
 
-# Twitter credentials
+# Configuration files
 twitter_credentials.json
+config.json
+
+# Cache files
+cache/date.json
+cache/tweets.json

@@ -1,27 +1,45 @@
-<div class="current-status {{statusClass first_tweet.entities.hashtags}}">
-    <div class="status-date">{{friendlyDate first_tweet.created_at}} &middot; {{friendlyTime first_tweet.created_at}}</div>
-    <div class="status-text">{{first_tweet.text}}</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>{{config.application_name}} System Status</title>
+    <link href="style.css" rel="stylesheet" />
+</head>
+<body>
+
+    <h1>{{config.application_name}} System Status</h1>
+
+    <div class="current-status {{statusClass first_tweet.entities.hashtags}}">
+        <div class="status-date">{{friendlyDate first_tweet.created_at}} &middot; {{friendlyTime first_tweet.created_at}}</div>
+        <div class="status-text">{{first_tweet.text}}</div>
+    </div>
+
+    <a class="follow-twitter" href="https://twitter.com/{{config.twitter_handle}}">Follow @{{config.twitter_handle}} on Twitter</a>
+
+    <div class="faq">
+        <h3>What is this site?</h3>
+        <p>
+            We continuously monitor the status of {{config.application_name}} and all its related services. If there are
+            any interruptions in service, or planned outages for maintenance, a note will be posted here.
+        </p>
+        <p>
+            If you are experiencing problems connecting to {{config.application_name}} and do not see a notice posted, please
+            email <a href="mailto:{{config.help_email}}">{{config.help_email}}</a>.
+        </p>
+    </div>
+
+    <ul class="historical-status">
+        {{#each tweets}}
+            <li class="{{statusClass entities.hashtags}}">
+                <div class="status-date">{{friendlyDate created_at}} &middot; {{friendlyTime created_at}}</div>
+                <div class="status-text">{{text}}</div>
+            </li>
+        {{/each}}
+    </ul>
+
+<div class="footer">
+    &copy; {{config.copyright}}. Built with <a href="https://github.com/actmd/node-system-status">node-system-status</a>
 </div>
 
-<a class="follow-twitter" href="https://twitter.com/actmdstatus">Follow @actmdstatus on Twitter</a>
-
-<div class="faq">
-    <h3>What is this site?</h3>
-    <p>
-        We continuously monitor the status of ACT.md and all its related services. If there are
-        any interruptions in service, or planned outages for maintenance, a note will be posted here.
-    </p>
-    <p>
-        If you are experiencing problems connecting to ACT.md and do not see a notice posted, please
-        email <a href="mailto:help@act.md">help@act.md</a>.
-    </p>
-</div>
-
-<ul class="historical-status">
-{{#each tweets}}
-    <li class="{{statusClass entities.hashtags}}">
-        <div class="status-date">{{friendlyDate created_at}} &middot; {{friendlyTime created_at}}</div>
-        <div class="status-text">{{text}}</div>
-    </li>
-{{/each}}
-</ul>
+</body>
+</html>
