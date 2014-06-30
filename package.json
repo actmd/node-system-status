@@ -1,0 +1,33 @@
+{
+  "name": "node-system-status",
+  "version": "0.0.0",
+  "description": "Create your own webapp status page with a Twitter account and this tiny Node.js app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/actmd/node-system-status.git"
+  },
+  "keywords": [
+    "node",
+    "status",
+    "twitter"
+  ],
+  "author": "Jonathan Abbett <jonathan@act.md>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/actmd/node-system-status/issues"
+  },
+  "homepage": "https://github.com/actmd/node-system-status",
+  "dependencies": {
+    "ntwitter": "~0.5.0",
+    "express": "~4.4.5",
+    "logfmt": "~1.1.2",
+    "express3-handlebars": "~0.5.0",
+    "sugar": "~1.4.1",
+    "handlebars": "~2.0.0-alpha.4",
+    "underscore": "~1.6.0"
+  }
+}

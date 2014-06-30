@@ -1,0 +1,22 @@
+<div class="current-status {{statusClass first_tweet.entities.hashtags}}">
+    <div class="status-date">{{friendlyDate first_tweet.created_at}} &middot; {{friendlyTime first_tweet.created_at}}</div>
+    <div class="status-text">{{first_tweet.text}}</div>
+</div>
+
+<a class="follow-twitter" href="https://twitter.com/actmdstatus">Follow @actmdstatus on Twitter</a>
+
+<div class="faq">
+    <h3>What is this site?</h3>
+    <p>
+        We continuously monitor the status of ACT.md and all its related services. If there are
+        any interruptions in service, or planned outages for maintenance, a note will be posted here.
+    </p>
+    <p>
+        If you are experiencing problems connecting to ACT.md and do not see a notice posted, please
+        email <a href="mailto:help@act.md">help@act.md</a>.
+    </p>
+</div>
+
+{{#each tweets}}
+    <p>{{text}}</p>
+{{/each}}

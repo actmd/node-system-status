@@ -1,0 +1,141 @@
+/* first for IE 4–8 */
+@font-face {
+    font-family: DINWeb;
+    src: url("fonts/DINWeb.eot");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: DINWeb;
+    src: url("fonts/DINWeb-Bold.eot");
+    font-weight: bold;
+}
+
+/* then for WOFF-capable browsers */
+@font-face {
+    font-family: DINWeb;
+    src: local('☺'), url("fonts/DINWeb.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: DINWeb;
+    src: local('☺'), url("fonts/DINWeb-Bold.woff") format("woff");
+    font-weight: bold;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: DINWeb, Helvetica, Arial, Sans-Serif;
+    margin:2em;
+    font-size:12pt;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+[class^="status-"] {
+
+}
+
+h1 {
+    margin-bottom:24pt;
+}
+
+h2 {
+    font-weight: normal;
+    margin:0;
+}
+
+h3 {
+    font-weight: normal;
+    border-bottom:1px dotted #ccc;
+    padding-bottom:2pt;
+}
+
+.faq p {
+    color:#999;
+    line-height:1.2;
+    margin-bottom:0.5em;
+}
+
+a {
+    color: #4183C4;
+    text-decoration: none;
+
+}
+
+.current-status {
+    font-size: 26pt;
+    padding:12pt;
+}
+
+.follow-twitter {
+    display: block;
+    margin-top:-40pt;
+    margin-bottom:60pt;
+    text-align: center;
+}
+
+.current-status .status-date {
+
+
+}
+
+.status-date {
+    font-size:12pt;
+    margin-bottom:4pt;
+}
+
+.status-ok, .status-warning, .status-maintenance {
+    border-top-width:4px;
+    border-top-style: solid;
+}
+
+.status-ok {
+    color: #468847;
+    border-top-color: rgb(197, 223, 176);
+    background-color: #dff0d8;
+}
+
+.status-warning {
+    color: rgb(185,  74,  72);
+    border-top-color: rgb(224, 185, 191);
+    background-color: rgb(242, 222, 222);
+}
+
+.status-maintenance {
+    color: rgb(192, 152,  83);
+    border-top-color: rgb(247, 227, 190);
+    background-color: rgb(252, 248, 227);
+}
+
+.historical-status {
+    list-style-type: none;
+    margin:0;
+    padding:0;
+}
+
+ul.historical-status li {
+    padding: 12pt;
+    margin-bottom:12pt;
+
+}
+
+.current-status, .historical-status, .faq, .footer {
+    margin:5pt auto 60pt;
+    max-width: 480pt;
+}
+
+.footer {
+    border-top:1px solid #ccc;
+    padding-top:1em;
+    font-size:10pt;
+    color:#999;
+}
