@@ -1,7 +1,7 @@
 node-system-status
 ==================
 
-Create your own webapp status page with a Twitter account and this tiny Node.js app
+Create your own webapp status page with a Twitter account and this tiny Node.js app from your friends at [ACT.md](http://act.md).
 
 * [Demo: View ACT.md's status page](http://status.act.md)
 
