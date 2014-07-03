@@ -3,6 +3,8 @@ node-system-status
 
 Create your own webapp status page with a Twitter account and this tiny Node.js app
 
+* [Demo: View ACT.md's status page](http://status.act.md)
+
 # The basics
 
 At ACT.md, we [use Twitter](https://twitter.com/actmdstatus) to notify our users of upcoming maintenance or, heaven forbid, an unplanned outage. node-system-status shows those messages in a clean and professional way, distinguishing between issues (red), maintenance notices (yellow), and all-clear messages (green) using the hashtags **#issue**, **#maintenance**, and **#ok**.
@@ -82,3 +84,6 @@ Assuming you have Node.js and [foreman](https://github.com/strongloop/node-forem
   * `git push heroku master`
 7. Note the URL that's displayed in the response and open that in your browser.
 
+# Acknowledgements
+
+* The "What is this site?" text is modeled closely on GitHub's status page text.
