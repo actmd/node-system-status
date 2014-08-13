@@ -17,7 +17,7 @@ Assuming you have Node.js and [foreman](https://github.com/strongloop/node-forem
 
 1. Clone the repo and `npm install` the dependencies
 2. Copy `config.orig.json` to `config.json` and customize
-3. Copy `twitter_credentials.json` to `twitter_credentials.json` and customize
+3. Copy `twitter_credentials.orig.json` to `twitter_credentials.json` and customize
 4. `foreman start` and visit [http://localhost:5000](http://localhost:5000)
 
 ## Detailed instructions
