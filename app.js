@@ -128,7 +128,7 @@ function fetchTweets(res) {
 }
 
 function renderTweets(res, tweets) {
-    var first = tweets.shift();
+    var first = tweets && tweets.length && tweets.shift();
 
     res.render('index', {
         config:      config,

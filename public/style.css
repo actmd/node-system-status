@@ -116,6 +116,10 @@ a {
     background-color: rgb(252, 248, 227);
 }
 
+.no-status {
+    text-align: center;
+}
+
 .historical-status {
     list-style-type: none;
     margin:0;

@@ -9,10 +9,16 @@
 
     <h1>{{config.application_name}} System Status</h1>
 
-    <div class="current-status {{statusClass first_tweet.entities.hashtags}}">
-        <div class="status-date">{{friendlyDate first_tweet.created_at}} &middot; {{friendlyTime first_tweet.created_at}}</div>
-        <div class="status-text">{{first_tweet.text}}</div>
-    </div>
+    {{#if first_tweet}}
+        <div class="current-status {{statusClass first_tweet.entities.hashtags}}">
+            <div class="status-date">{{friendlyDate first_tweet.created_at}} &middot; {{friendlyTime first_tweet.created_at}}</div>
+            <div class="status-text">{{first_tweet.text}}</div>
+        </div>
+    {{else}}
+        <div class="current-status no-status status-maintenance">
+            <div class="status-text">No status information yet.</div>
+        </div>
+    {{/if}}
 
     <a class="follow-twitter" href="https://twitter.com/{{config.twitter_handle}}">Follow @{{config.twitter_handle}} on Twitter</a>
 
