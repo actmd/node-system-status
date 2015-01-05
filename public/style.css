@@ -40,10 +40,6 @@ h1, h2 {
     text-align: center;
 }
 
-[class^="status-"] {
-
-}
-
 h1 {
     margin-bottom:24pt;
 }
@@ -68,7 +64,6 @@ h3 {
 a {
     color: #4183C4;
     text-decoration: none;
-
 }
 
 .current-status {
@@ -83,19 +78,20 @@ a {
     text-align: center;
 }
 
-.current-status .status-date {
-
-
-}
-
 .status-date {
     font-size:12pt;
     margin-bottom:4pt;
 }
 
-.status-ok, .status-warning, .status-maintenance {
+.status-default, .status-ok, .status-issue, .status-maintenance {
     border-top-width:4px;
     border-top-style: solid;
+}
+
+.status-default {
+    color: #666;
+    border-top-color: #aaa;
+    background-color: #eee;
 }
 
 .status-ok {
@@ -104,7 +100,7 @@ a {
     background-color: #dff0d8;
 }
 
-.status-warning {
+.status-issue {
     color: rgb(185,  74,  72);
     border-top-color: rgb(224, 185, 191);
     background-color: rgb(242, 222, 222);

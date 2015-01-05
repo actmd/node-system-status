@@ -31,3 +31,4 @@ config.json
 # Cache files
 cache/date.json
 cache/tweets.json
+.idea

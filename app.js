@@ -60,6 +60,7 @@ hbs = expressHandlebars.create({
                 return "status-issue";
             } else {
                 console.log("No applicable hashtag for status class: " + hashtags);
+                return "status-default";
             }
 
         },
