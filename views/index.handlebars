@@ -12,7 +12,7 @@
     {{#if first_tweet}}
         <div class="current-status {{statusClass first_tweet.entities.hashtags}}">
             <div class="status-date">{{friendlyDate first_tweet.created_at}} &middot; {{friendlyTime first_tweet.created_at}}</div>
-            <div class="status-text">{{first_tweet.text}}</div>
+            <div class="status-text">{{first_tweet.full_text}}</div>
         </div>
     {{else}}
         <div class="current-status no-status status-maintenance">
@@ -38,7 +38,7 @@
         {{#each tweets}}
             <li class="{{statusClass entities.hashtags}}">
                 <div class="status-date">{{friendlyDate created_at}} &middot; {{friendlyTime created_at}}</div>
-                <div class="status-text">{{text}}</div>
+                <div class="status-text">{{full_text}}</div>
             </li>
         {{/each}}
     </ul>
