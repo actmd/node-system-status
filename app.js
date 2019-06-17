@@ -111,6 +111,7 @@ function fetchTweets(res) {
         '/statuses/user_timeline.json',
 
         {
+            tweet_mode:  "extended",
             screen_name: config.twitter_handle,
             count:       config.number_of_tweets
         },

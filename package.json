@@ -24,7 +24,7 @@
   "dependencies": {
     "express": "^4.16.3",
     "express-handlebars": "^3.0.0",
-    "handlebars": "~>4.0.0",
+    "handlebars": "^4.1.2",
     "jsonfile": "~1.2.0",
     "logfmt": "^1.2.1",
     "ntwitter": "~0.5.0",
